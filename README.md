@@ -20,7 +20,7 @@ The code in this repository can be used to supply assets to Compound on the main
 
 Before we continue get an API key from [Infura.io](https://infura.io/). Infura will be used to access the Ethereum network. For testing, it will be used to make a `fork` of the main Ethereum network that runs on your local machine. You'll use your Infura API key in the next step.
 
-To get the local test net running, use the follwoing command in a second terminal window. The command runs Ganache CLI, forks the main Ethereum network to your machine via Infura (be sure to insert your API key where noted), creates an Ethereum wallet based on mnemonic (**for test only**), sets a network ID, and unlocks an address for minting test DAI. The address for minting DAI changes occasionally (see **Minting Test DAI** section below for updating).
+To get the local test net running, use the following command in a second terminal window. The command runs Ganache CLI, forks the main Ethereum network to your machine via Infura (be sure to insert your API key where noted), creates an Ethereum wallet based on mnemonic (**for test only**), sets a network ID, and unlocks an address for minting test DAI. The address for minting DAI changes occasionally (see **Minting Test DAI** section below for updating).
 ```bash
 cd compound-supply-examples
 ./node_modules/.bin/ganache-cli \
