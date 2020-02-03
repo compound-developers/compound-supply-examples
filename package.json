@@ -1,7 +1,7 @@
 {
   "name": "compound-supply-examples",
   "version": "1.0.0",
-  "description": "Examples for supplying Ethereum assets to the Compoung Protocol. https://compound.finance/",
+  "description": "Code examples for supplying Ethereum assets to the Compound Protocol. https://compound.finance/",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
