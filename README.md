@@ -26,10 +26,10 @@ If you want to use the script examples in the **web browser**, you'll need to fi
 <script src="https://cdn.jsdelivr.net/npm/web3@1.2.6/dist/web3.min.js"></script>
 ```
 
-### Running a Local Ethereum Test Net
+### Running a Local Ethereum Test Net with Ganache CLI
 Before we continue get an API key from [Infura.io](https://infura.io/). Infura will be used to access the Ethereum network. For testing, it will be used to make a `fork` of the Main Ethereum network that runs on your local machine. You'll use your Infura API key in the next step.
 
-To get the localhost test net running, use the following command in a second terminal window. The command runs Ganache CLI, forks the Main Ethereum network to your machine via Infura (be sure to **insert your API key** where noted below).
+To get the localhost test net running, use the following commands in a second terminal window. The command runs Ganache CLI and forks the Main Ethereum network to your machine via Infura (be sure to **insert your API key** where noted below).
 ```bash
 cd compound-supply-examples/
 
@@ -49,11 +49,11 @@ cd compound-supply-examples/
 ## Supplying Assets Directly via JSON RPC
 These code examples can be run by a web browser or with Node.js. If you want to use a web browser, you'll need to import the web3.js script in your HTML or JS file (see import above).
 
-Running these scripts will give your wallet **cETH** and **cDAI**. These are ERC20 Tokens that can be redeemed later for **more** of the underlying asset. The cToken exchange rate **increases every Ethereum block**, they can be transferred, and can be used to redeem at any time.
+Running these scripts will give your wallet **cETH** and **cDAI**. These are ERC20 Tokens that can be **used to redeem an ever-increasing amount of the underlying asset**. The cToken exchange rate **increases every Ethereum block**, they can be transferred, and can be used to redeem at any time.
 
 ### Localhost Test Net
 - Run your local test net in a second command line window **using the command above**.
-- If using DAI (an ERC20 token example), you need to **first** mint some for your wallet using `node mint-testnet-dai.js`. You may need to update the DAI main net contract address and the `MCD_JOIN_DAI` address in the script. This changes periodically as DAI is improved.
+- If using DAI (an ERC20 token example), you need to **first** mint some for your wallet using `node mint-testnet-dai.js`. You may need to update the DAI main net contract address and the `MCD_JOIN_DAI` address in the script. This changes periodically as DAI is improved (see **Minting Test DAI** section below for updating).
 - `cd json-rpc-examples/`
 - `node supply-eth-via-json-rpc.js` To supply ETH.
 - `node supply-erc20-via-json-rpc.js` To supply some DAI. The same code can be used for any other [ERC20 token that Compound supports](https://compound.finance/markets?ref=github&user=ajb413&repo=compound-supply-examples).
@@ -65,11 +65,11 @@ Running these scripts will give your wallet **cETH** and **cDAI**. These are ERC
 - Next, replace the contract addresses in the scripts with the most recent ones. You can find Compound's cToken contract addresses for each network on this page: [https://compound.finance/developers#networks](https://compound.finance/developers#networks). The DAI contract address can be found in the Maker DAO website change logs [https://changelog.makerdao.com/](https://changelog.makerdao.com/).
 
 ## Supplying Assets via Solidity Smart Contracts
-Running these scripts will give your contract address **cETH** and **cDAI**. These are ERC20 Tokens that can be redeemed later for **more** of the underlying asset. The cToken exchange rate **increases every Ethereum block**, they can be transferred, and can be used to redeem at any time.
+Running these scripts will give your contract address **cETH** and **cDAI**. These are ERC20 Tokens that can be **used to redeem an ever-increasing amount of the underlying asset**. The cToken exchange rate **increases every Ethereum block**, they can be transferred, and can be used to redeem at any time.
 
 ### Localhost Test Net
 - Run your local test net in a second command line window **using the command above**.
-- If using DAI (an ERC20 token example), you need to **first** mint some for your wallet using `node mint-testnet-dai.js`. You may need to update the DAI main net contract address and the `MCD_JOIN_DAI` address in the script. This changes periodically as DAI is improved.
+- If using DAI (an ERC20 token example), you need to **first** mint some for your wallet using `node mint-testnet-dai.js`. You may need to update the DAI main net contract address and the `MCD_JOIN_DAI` address in the script. This changes periodically as DAI is improved (see **Minting Test DAI** section below for updating).
 - `node compile-smart-contracts.js` This will compile the Solidity code in `solidity-examples/`. The build output is written to `.build/`.
 - `node deploy-smart-contracts.js`.
 - `cd solidity-examples/`
