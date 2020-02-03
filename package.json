@@ -1,0 +1,21 @@
+{
+  "name": "compound-supply-examples",
+  "version": "1.0.0",
+  "description": "Examples for supplying Ethereum assets to the Compoung Protocol. https://compound.finance/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "compound finance",
+    "ethereum",
+    "web3"
+  ],
+  "author": "Compound Labs, Inc.",
+  "license": "MIT",
+  "dependencies": {
+    "ganache-cli": "^6.8.2",
+    "solc": "0.5.12",
+    "web3": "^1.2.5"
+  }
+}
