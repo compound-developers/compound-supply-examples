@@ -21,7 +21,7 @@ If you haven't already, install [Node.js](https://nodejs.org/) LTS. Clone this r
 npm install
 ```
 
-If you want to use the script examples in the **web browser**, you'll need to first import web3.js in your HTML file using the following line. You'll also need to import the JS example files into your HTML. This step is not necessary if you are running the examples with only Node.js.
+If you want to use the script examples in the **web browser**, you'll need to first import web3.js in your HTML file using the following line. You'll also need to import the JS example files into your HTML. This step is **not necessary** if you are running the examples with only Node.js.
 ```html
 <script src="https://cdn.jsdelivr.net/npm/web3@1.2.6/dist/web3.min.js"></script>
 ```
@@ -29,7 +29,7 @@ If you want to use the script examples in the **web browser**, you'll need to fi
 ### Running a Local Ethereum Test Net
 Before we continue get an API key from [Infura.io](https://infura.io/). Infura will be used to access the Ethereum network. For testing, it will be used to make a `fork` of the Main Ethereum network that runs on your local machine. You'll use your Infura API key in the next step.
 
-To get the localhost test net running, use the following command in a second terminal window. The command runs Ganache CLI, forks the Main Ethereum network to your machine via Infura (be sure to insert your API key where noted below).
+To get the localhost test net running, use the following command in a second terminal window. The command runs Ganache CLI, forks the Main Ethereum network to your machine via Infura (be sure to **insert your API key** where noted below).
 ```bash
 cd compound-supply-examples/
 
@@ -42,9 +42,9 @@ cd compound-supply-examples/
 ```
 
 - `-f` Forks the Main Ethereum network to your local machine for development and testing.
-- `-m` Runs Ganache with an Ethereum key set based on the mnemonic passed. The first 10 addresses have 100 test ETH in their balance on the local test net every time you boot Ganache.
+- `-m` Runs Ganache with an Ethereum key set based on the mnemonic passed. The first 10 addresses have 100 test ETH in their balance on the local test net every time you boot Ganache. **Do not use this mnemonic anywhere other than your localhost test net.**
 - `-i` Sets an explicit network ID to avoid confusion and errors.
-- `-u` Unlocks an address so you can write to your test blockchain without knowing that address's private key. We are unlocking the above address so we can mint our own test DAI on our localhost test net. The address for minting DAI changes occasionally (see **Minting Test DAI** section below for updating).
+- `-u` Unlocks an address so you can write to your localhost test blockchain without knowing that address's private key. We are unlocking the above address so we can mint our own test DAI on our localhost test net. The address for minting DAI changes occasionally (see **Minting Test DAI** section below for updating).
 
 ## Supplying Assets Directly via JSON RPC
 These code examples can be run by a web browser or with Node.js. If you want to use a web browser, you'll need to import the web3.js script in your HTML or JS file (see import above).
