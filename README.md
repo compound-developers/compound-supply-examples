@@ -120,5 +120,17 @@ MyContract's cDAI Token Balance: 49.9718367
 ```
 
 ## Minting Test DAI
-To mint some DAI for your test network, you must use the **Join DAI** address. This can be unlocked when running Ganache CLI. You'll need to update the Join DAI address and the contract address each time the DAI contracts are updated. The contract address can be found at [https://changelog.makerdao.com/](https://changelog.makerdao.com/). Click the latest production release, then contract addresses. The main net DAI contract address is in the JSON value of the `MCD_DAI` key. The Join DAI address is in the `MCD_JOIN_DAI` key.
+To mint some DAI for your test network, you must use the **Join DAI** address. This can be unlocked when running Ganache CLI. You'll need to update the Join DAI address and the contract address each time the DAI contracts are updated. 
 
+The contract address can be found at [https://changelog.makerdao.com/](https://changelog.makerdao.com/).
+
+- Click the latest production release.
+- Click contract addresses.
+- The main net DAI contract address is in the JSON value of the `MCD_DAI` key.
+- The Join DAI address is in the `MCD_JOIN_DAI` key.
+
+Once you're certain you have the latest DAI and Join DAI address:
+
+- Run Ganache CLI using the command above with `-u` and the Join DAI address.
+- Paste the new addresses in `mint-testnet-dai.js` and save.
+- Run `node mint-testnet-dai.js`.
