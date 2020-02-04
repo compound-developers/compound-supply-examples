@@ -40,26 +40,53 @@ const privateKey = '0xb8c1b5c1d81f9475fdf2e334517d29f733bdfa40682207571b12fc1142
 web3.eth.accounts.wallet.add(privateKey);
 const myWalletAddress = web3.eth.accounts.wallet[0].address;
 
-// Mint some cDAI by sending DAI to the Compound Protocol
-myContract.methods.supplyErc20ToCompound(
-  daiMainNetAddress,
-  compoundCDaiContractAddress,
-  10 // DAI to supply
-).send({
-  from: myWalletAddress,
-  gasLimit: web3.utils.toHex(150000),      // posted at compound.finance/developers#gas-costs
-  gasPrice: web3.utils.toHex(20000000000), // use ethgasstation.info (mainnet only)
-}).then((result) => {
+const main = async function() {
+  let approve = await daiContract.methods.approve(
+    myContractAddress,
+    10 // DAI to send to MyContract
+  ).send({
+    from: myWalletAddress,
+    gasLimit: web3.utils.toHex(150000),      // posted at compound.finance/developers#gas-costs
+    gasPrice: web3.utils.toHex(20000000000), // use ethgasstation.info (mainnet only)
+  });
+
+  console.log('Approved DAI to send from my wallet to MyContract');
+  console.log('Now transferring DAI from my wallet to MyContract...');
+
+  let transferResult = await daiContract.methods.transfer(
+    myContractAddress,
+    10 // DAI to send to MyContract
+  ).send({
+    from: myWalletAddress,
+    gasLimit: web3.utils.toHex(150000),      // posted at compound.finance/developers#gas-costs
+    gasPrice: web3.utils.toHex(20000000000), // use ethgasstation.info (mainnet only)
+  });
+
+  console.log('MyContract now has DAI to supply to the Compound Protocol.');
+
+  // Mint some cDAI by sending DAI to the Compound Protocol
+  console.log('MyContract is now minting cDAI...');
+  let supplyResult = await myContract.methods.supplyErc20ToCompound(
+    daiMainNetAddress,
+    compoundCDaiContractAddress,
+    10 // DAI to supply
+  ).send({
+    from: myWalletAddress,
+    gasLimit: web3.utils.toHex(5000000),      // posted at compound.finance/developers#gas-costs
+    gasPrice: web3.utils.toHex(20000000000), // use ethgasstation.info (mainnet only)
+  });
   console.log('Supplied DAI to Compound via MyContract');
-  return compoundCDaiContractAddress.methods
+
+  let balanceOfUnderlying = await compoundCDaiContract.methods
     .balanceOfUnderlying(myContractAddress).call();
-}).then((balanceOfUnderlying) => {
-  balanceOfUnderlying = web3.utils.fromWei(balanceOfUnderlying).toString();
+  // balanceOfUnderlying = web3.utils.fromWei(balanceOfUnderlying).toString();
   console.log("DAI supplied to the Compound Protocol:", balanceOfUnderlying);
-  return compoundCDaiContractAddress.methods.balanceOf(myContractAddress).call();
-}).then((cTokenBalance) => {
-  cTokenBalance = cTokenBalance / 1e8;
+
+  let cTokenBalance = await compoundCDaiContract.methods.balanceOf(myContractAddress).call();
+  // cTokenBalance = cTokenBalance / 1e8;
   console.log("MyContract's cDAI Token Balance:", cTokenBalance);
-}).catch((error) => {
-  console.error(error);
+}
+
+main().catch((err) => {
+  console.error(err);
 });
