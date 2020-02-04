@@ -43,7 +43,7 @@ const myWalletAddress = web3.eth.accounts.wallet[0].address;
 const main = async function() {
   let approve = await daiContract.methods.approve(
     myContractAddress,
-    10 // DAI to send to MyContract
+    web3.utils.toHex(10e18) // 10 DAI to send to MyContract
   ).send({
     from: myWalletAddress,
     gasLimit: web3.utils.toHex(150000),      // posted at compound.finance/developers#gas-costs
@@ -55,7 +55,7 @@ const main = async function() {
 
   let transferResult = await daiContract.methods.transfer(
     myContractAddress,
-    10 // DAI to send to MyContract
+    web3.utils.toHex(10e18) // 10 DAI to send to MyContract
   ).send({
     from: myWalletAddress,
     gasLimit: web3.utils.toHex(150000),      // posted at compound.finance/developers#gas-costs
@@ -69,21 +69,22 @@ const main = async function() {
   let supplyResult = await myContract.methods.supplyErc20ToCompound(
     daiMainNetAddress,
     compoundCDaiContractAddress,
-    10 // DAI to supply
+    web3.utils.toHex(10e18) // 10 DAI to supply
   ).send({
     from: myWalletAddress,
     gasLimit: web3.utils.toHex(5000000),      // posted at compound.finance/developers#gas-costs
     gasPrice: web3.utils.toHex(20000000000), // use ethgasstation.info (mainnet only)
   });
+  // console.log('Supplied DAI to Compound via MyContract', JSON.stringify(supplyResult));
   console.log('Supplied DAI to Compound via MyContract');
 
   let balanceOfUnderlying = await compoundCDaiContract.methods
     .balanceOfUnderlying(myContractAddress).call();
-  // balanceOfUnderlying = web3.utils.fromWei(balanceOfUnderlying).toString();
+  balanceOfUnderlying = web3.utils.fromWei(balanceOfUnderlying).toString();
   console.log("DAI supplied to the Compound Protocol:", balanceOfUnderlying);
 
   let cTokenBalance = await compoundCDaiContract.methods.balanceOf(myContractAddress).call();
-  // cTokenBalance = cTokenBalance / 1e8;
+  cTokenBalance = cTokenBalance / 1e8;
   console.log("MyContract's cDAI Token Balance:", cTokenBalance);
 }
 

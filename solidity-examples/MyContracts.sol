@@ -2,6 +2,7 @@ pragma solidity ^0.5.12;
 
 contract Erc20 {
   function approve(address, uint) external returns (bool);
+  function transfer(address, uint) external returns (bool);
 }
 
 contract CErc20 {
@@ -24,7 +25,7 @@ contract MyContract {
     address _erc20Contract,
     address _cErc20Contract,
     uint256 _numTokensToSupply
-  ) public returns(bool) {
+  ) public returns (uint) {
     // Create a reference to the underlying asset contract, like DAI.
     Erc20 underlying = Erc20(_erc20Contract);
 
@@ -35,7 +36,7 @@ contract MyContract {
     underlying.approve(_cErc20Contract, _numTokensToSupply);
 
     // Mint cTokens and assert there is no error
-    assert(cToken.mint(_numTokensToSupply) == 0);
-    return true;
+    uint mintResult = cToken.mint(_numTokensToSupply);
+    return mintResult;
   }
 }

@@ -32,8 +32,17 @@ const input = {
 const output = JSON.parse(solc.compile(JSON.stringify(input)));
 
 if (output.errors) {
+  let allWarnings = true;
+  output.errors.forEach((potentiallyAnError) => {
+    if (potentiallyAnError.type !== 'Warning') allWarnings = false;
+  });
+
   console.error(output.errors);
-  process.exit(1);
+
+  if (!allWarnings) {
+    console.error('BUILD FAILED, EXITING.');
+    process.exit(1);
+  }
 }
 
 const myContractOutput = output.contracts[myContractFileName][MyContractName];
@@ -42,7 +51,8 @@ const abi = myContractOutput.abi;
 
 fs.mkdir('./.build/', { recursive: true }, (err) => {
   if (err) {
-    console.error(err);
+    console.error('Error creating a build directory', err);
+    console.error('BUILD FAILED, EXITING.');
     process.exit(1);
   }
 });

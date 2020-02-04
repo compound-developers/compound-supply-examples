@@ -4,7 +4,8 @@
   "description": "Code examples for supplying Ethereum assets to the Compound Protocol. https://compound.finance/",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "console": "npx -n --experimental-repl-await saddle console"
   },
   "keywords": [
     "compound finance",
