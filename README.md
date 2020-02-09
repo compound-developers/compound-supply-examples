@@ -36,7 +36,7 @@ cd compound-supply-examples/
 ## Run a fork of main net locally using Ganache CLI
 ./node_modules/.bin/ganache-cli \
   -f https://mainnet.infura.io/v3/<YOUR INFURA API KEY HERE> \
-  -m "clutch captain shoe salt awake harvest setup primary inmate ugly among become"
+  -m "clutch captain shoe salt awake harvest setup primary inmate ugly among become" \
   -i 999 \
   -u 0x9759A6Ac90977b93B58547b4A71c78317f391A28
 ```
@@ -109,7 +109,7 @@ node supply-eth-via-solidity.js
 Supplied ETH to Compound via MyContract
 ETH supplied to the Compound Protocol: 0.999999999998500226
 MyContract's cETH Token Balance: 49.97183528
-``` 
+```
 
 **Supply ERC20 Token via Solidity**
 ```
