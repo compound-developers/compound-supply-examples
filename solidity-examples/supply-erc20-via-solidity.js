@@ -41,16 +41,6 @@ web3.eth.accounts.wallet.add(privateKey);
 const myWalletAddress = web3.eth.accounts.wallet[0].address;
 
 const main = async function() {
-  let approve = await daiContract.methods.approve(
-    myContractAddress,
-    web3.utils.toHex(10e18) // 10 DAI to send to MyContract
-  ).send({
-    from: myWalletAddress,
-    gasLimit: web3.utils.toHex(150000),      // posted at compound.finance/developers#gas-costs
-    gasPrice: web3.utils.toHex(20000000000), // use ethgasstation.info (mainnet only)
-  });
-
-  console.log('Approved DAI to send from my wallet to MyContract');
   console.log('Now transferring DAI from my wallet to MyContract...');
 
   let transferResult = await daiContract.methods.transfer(
