@@ -114,7 +114,6 @@ MyContract's cETH Token Balance: 49.97183528
 **Supply ERC20 Token via Solidity**
 ```
 node supply-erc20-via-solidity.js
-Approved DAI to send from my wallet to MyContract
 Now transferring DAI from my wallet to MyContract...
 MyContract now has DAI to supply to the Compound Protocol.
 MyContract is now minting cDAI...
