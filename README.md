@@ -1,6 +1,8 @@
 # Quick Start: Supplying Assets to the Compound Protocol
 
-Examples for supplying Ethereum assets to the [Compound Protocol](https://compound.finance/?ref=github&user=ajb413&repo=compound-supply-examples). 
+Examples for supplying Ethereum assets to the [Compound Protocol](https://compound.finance/?ref=github&user=ajb413&repo=compound-supply-examples).
+
+**[Full Quick Start Tutorial on the Compound Medium Blog](https://medium.com/compound-finance/supplying-assets-to-the-compound-protocol-ec2cf5df5aa)** 
 
 If you want to supply assets directly to the protocol from your Ethereum wallet using JSON RPC and Web3.js, see the `json-rpc-examples` folder. JSON RPC can be utilized in the **web browser or with Node.js**.
 
