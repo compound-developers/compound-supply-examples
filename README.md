@@ -27,9 +27,7 @@ If you want to use the script examples in the **web browser**, you'll need to fi
 ```
 
 ### Running a Local Ethereum Test Net with Ganache CLI
-Before we continue get an API key from [Infura.io](https://infura.io/). Infura will be used to access the Ethereum network. For testing, it will be used to make a `fork` of the Main Ethereum network that runs on your local machine. You'll use your Infura API key in the next step.
-
-To get the localhost test net running, use the following commands in a second terminal window. The command runs Ganache CLI and forks the Main Ethereum network to your machine via Cloudflare. If you want to access a test network like Ropsten, you can replace the `-f` value with your Infura endpoint with your API key (something like `https://kovan.infura.io/v3/<YOUR INFURA API KEY HERE>`).
+To get the localhost test net running, use the following commands in a second command line window. The command runs Ganache CLI and forks the Main Ethereum network to your machine via Cloudflare. If you want to access a test network like Ropsten, you can replace the `-f` value with your [Infura](https://infura.io/) endpoint with your API key (something like `https://kovan.infura.io/v3/<YOUR INFURA API KEY HERE>`).
 ```bash
 cd compound-supply-examples/
 
