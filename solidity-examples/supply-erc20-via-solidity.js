@@ -65,15 +65,45 @@ const main = async function() {
     gasLimit: web3.utils.toHex(5000000),      // posted at compound.finance/developers#gas-costs
     gasPrice: web3.utils.toHex(20000000000), // use ethgasstation.info (mainnet only)
   });
-  // console.log('Supplied DAI to Compound via MyContract', JSON.stringify(supplyResult));
+
   console.log('Supplied DAI to Compound via MyContract');
+  // Uncomment this to see the solidity logs
+  // console.log(supplyResult.events.MyLog);
 
   let balanceOfUnderlying = await compoundCDaiContract.methods
     .balanceOfUnderlying(myContractAddress).call();
-  balanceOfUnderlying = web3.utils.fromWei(balanceOfUnderlying).toString();
-  console.log("DAI supplied to the Compound Protocol:", balanceOfUnderlying);
+  const balanceOfUnderlyingDai = web3.utils.fromWei(balanceOfUnderlying);
+  console.log("DAI supplied to the Compound Protocol:", balanceOfUnderlyingDai);
 
   let cTokenBalance = await compoundCDaiContract.methods.balanceOf(myContractAddress).call();
+  cTokenBalance = cTokenBalance / 1e8;
+  console.log("MyContract's cDAI Token Balance:", cTokenBalance);
+
+  // Call redeem based on a cToken amount
+  const amount = web3.utils.toHex(cTokenBalance * 1e8);
+  const redeemType = true; // true for `redeem`
+
+  // Call redeemUnderlying based on an underlying amount
+  // const amount = web3.utils.toHex(balanceOfUnderlying);
+  // const redeemType = false; //false for `redeemUnderlying`
+
+  // Retrieve your asset by exchanging cTokens
+  console.log('Redeeming the cDAI for DAI...');
+  let redeemResult = await myContract.methods.redeemCErc20Tokens(
+    amount,
+    redeemType,
+    compoundCDaiContractAddress
+  ).send({
+    from: myWalletAddress,
+    gasLimit: web3.utils.toHex(600000),      // posted at compound.finance/developers#gas-costs
+    gasPrice: web3.utils.toHex(20000000000), // use ethgasstation.info (mainnet only)
+  });
+
+  if (redeemResult.events.MyLog.returnValues[1] != 0) {
+    throw Error('Redeem Error Code: '+redeemResult.events.MyLog.returnValues[1]);
+  }
+
+  cTokenBalance = await compoundCDaiContract.methods.balanceOf(myContractAddress).call();
   cTokenBalance = cTokenBalance / 1e8;
   console.log("MyContract's cDAI Token Balance:", cTokenBalance);
 }

@@ -19,33 +19,71 @@ const daiContractAddress = '0x6b175474e89094c44da98b954eedeac495271d0f';
 const daiAbiJson = [{"inputs":[{"internalType":"uint256","name":"chainId_","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"src","type":"address"},{"indexed":true,"internalType":"address","name":"guy","type":"address"},{"indexed":false,"internalType":"uint256","name":"wad","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":true,"inputs":[{"indexed":true,"internalType":"bytes4","name":"sig","type":"bytes4"},{"indexed":true,"internalType":"address","name":"usr","type":"address"},{"indexed":true,"internalType":"bytes32","name":"arg1","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"arg2","type":"bytes32"},{"indexed":false,"internalType":"bytes","name":"data","type":"bytes"}],"name":"LogNote","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"src","type":"address"},{"indexed":true,"internalType":"address","name":"dst","type":"address"},{"indexed":false,"internalType":"uint256","name":"wad","type":"uint256"}],"name":"Transfer","type":"event"},{"constant":true,"inputs":[],"name":"DOMAIN_SEPARATOR","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"PERMIT_TYPEHASH","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"address","name":"","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"usr","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"usr","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"guy","type":"address"}],"name":"deny","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"usr","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"src","type":"address"},{"internalType":"address","name":"dst","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"move","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"nonces","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"holder","type":"address"},{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"nonce","type":"uint256"},{"internalType":"uint256","name":"expiry","type":"uint256"},{"internalType":"bool","name":"allowed","type":"bool"},{"internalType":"uint8","name":"v","type":"uint8"},{"internalType":"bytes32","name":"r","type":"bytes32"},{"internalType":"bytes32","name":"s","type":"bytes32"}],"name":"permit","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"usr","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"pull","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"usr","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"push","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"guy","type":"address"}],"name":"rely","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"dst","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"src","type":"address"},{"internalType":"address","name":"dst","type":"address"},{"internalType":"uint256","name":"wad","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"version","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"wards","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}];
 const daiContract = new web3.eth.Contract(daiAbiJson, daiContractAddress);
 
-// Tell DAI contract to allow 10 DAI to be taken by Compound's contract
-daiContract.methods.approve(compoundCDaiContractAddress, web3.utils.toBN(10e18))
-.send({
-  from: myWalletAddress,
-  gasLimit: web3.utils.toHex(150000),     // posted at compound.finance/developers#gas-costs
-  gasPrice: web3.utils.toHex(20000000000) // use ethgasstation.info (mainnet only)
-}).then((result) => {
+const main = async function() {
+  const supplyRatePerBlockMantissa = await compoundCDaiContract.methods.
+    supplyRatePerBlock().call();
+
+  const interestPerEthThisBlock = supplyRatePerBlockMantissa / 1e18;
+  console.log(`Each supplied DAI will increase by ${interestPerEthThisBlock}` +
+    ` this block, based on the current interest rate.`)
+
+  // Tell DAI contract to allow 10 DAI to be taken by Compound's contract
+  await daiContract.methods.approve(
+    compoundCDaiContractAddress, web3.utils.toBN(10e18)
+  ).send({
+    from: myWalletAddress,
+    gasLimit: web3.utils.toHex(150000),     // posted at compound.finance/developers#gas-costs
+    gasPrice: web3.utils.toHex(20000000000) // use ethgasstation.info (mainnet only)
+  });
+
   console.log('DAI contract "Approve" operation successful.');
   console.log('Sending DAI to the Compound Protocol...');
   // Mint cDAI by supplying DAI to the Compound Protocol
   const dai = 10e18; // 10 DAI
-  return compoundCDaiContract.methods.mint(web3.utils.toBN(dai)).send({
+  await compoundCDaiContract.methods.mint(web3.utils.toBN(dai)).send({
     from: myWalletAddress,
     gasLimit: web3.utils.toHex(600000),
     gasPrice: web3.utils.toHex(20000000000),
   });
-}).then((result) => {
+
   console.log('cDAI "Mint" operation successful.');
-  return compoundCDaiContract.methods
+  const _balanceOfUnderlying = await compoundCDaiContract.methods
     .balanceOfUnderlying(myWalletAddress).call();
-}).then((balanceOfUnderlying) => {
-  balanceOfUnderlying = web3.utils.fromWei(balanceOfUnderlying).toString();
+  let balanceOfUnderlying = web3.utils.fromWei(_balanceOfUnderlying).toString();
   console.log("DAI supplied to the Compound Protocol:", balanceOfUnderlying);
-  return compoundCDaiContract.methods.balanceOf(myWalletAddress).call();
-}).then((cTokenBalance) => {
+
+  const _cTokenBalance = await compoundCDaiContract.methods.
+    balanceOf(myWalletAddress).call();
+  let cTokenBalance = (_cTokenBalance / 1e8).toString();
+  console.log("My wallet's cDAI Token Balance:", cTokenBalance);
+
+  let exchangeRateCurrent = await compoundCDaiContract.methods.
+    exchangeRateCurrent().call();
+  exchangeRateCurrent = (exchangeRateCurrent / 1e28).toString();
+  console.log("Current exchange rate from cDAI to DAI:", exchangeRateCurrent);
+
+  console.log('Redeeming the cDAI for DAI...');
+
+  console.log('Exchanging all cDAI based on cToken amount...');
+  await compoundCDaiContract.methods.redeem(cTokenBalance * 1e8).send({
+    from: myWalletAddress,
+    gasLimit: web3.utils.toHex(500000),      // posted at compound.finance/developers#gas-costs
+    gasPrice: web3.utils.toHex(20000000000), // use ethgasstation.info (mainnet only)
+  });
+
+  // console.log('Exchanging all cDAI based on underlying DAI amount...');
+  // let daiAmount = web3.utils.toWei(balanceOfUnderlying).toString();
+  // await compoundCDaiContract.methods.redeemUnderlying(daiAmount).send({
+  //   from: myWalletAddress,
+  //   gasLimit: web3.utils.toHex(600000),      // posted at compound.finance/developers#gas-costs
+  //   gasPrice: web3.utils.toHex(20000000000), // use ethgasstation.info (mainnet only)
+  // });
+
+  cTokenBalance = await compoundCDaiContract.methods.balanceOf(myWalletAddress).call();
   cTokenBalance = (cTokenBalance / 1e8).toString();
   console.log("My wallet's cDAI Token Balance:", cTokenBalance);
-}).catch((error) => {
-  console.error(error);
+}
+
+main().catch((err) => {
+  console.error(err);
 });

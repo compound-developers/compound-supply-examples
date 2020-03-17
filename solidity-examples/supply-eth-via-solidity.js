@@ -32,25 +32,67 @@ const privateKey = 'b8c1b5c1d81f9475fdf2e334517d29f733bdfa40682207571b12fc1142cb
 
 // Add your Ethereum wallet to the Web3 object
 web3.eth.accounts.wallet.add('0x' + privateKey);
+const myWalletAddress = web3.eth.accounts.wallet[0].address;
 
-// Mint some cETH by sending ETH to the Compound Protocol
-myContract.methods.supplyEthToCompound(compoundCEthContractAddress)
-.send({
-  from: web3.eth.accounts.wallet[0].address, // Some Ganache wallet address
-  gasLimit: web3.utils.toHex(150000),        // posted at compound.finance/developers#gas-costs
-  gasPrice: web3.utils.toHex(20000000000),   // use ethgasstation.info (mainnet only)
-  value: web3.utils.toHex(web3.utils.toWei('1', 'ether'))
-}).then((result) => {
+const main = async function() {
+  // Mint some cETH by sending ETH to the Compound Protocol
+  let supplyResult = await myContract.methods.supplyEthToCompound(
+    compoundCEthContractAddress
+  ).send({
+    from: myWalletAddress, // Some Ganache wallet address
+    gasLimit: web3.utils.toHex(500000),        // posted at compound.finance/developers#gas-costs
+    gasPrice: web3.utils.toHex(20000000000),   // use ethgasstation.info (mainnet only)
+    value: web3.utils.toHex(web3.utils.toWei('1', 'ether'))
+  });
+
   console.log('Supplied ETH to Compound via MyContract');
-  return compoundCEthContract.methods
-    .balanceOfUnderlying(myContractAddress).call();
-}).then((balanceOfUnderlying) => {
-  balanceOfUnderlying = web3.utils.fromWei(balanceOfUnderlying);
-  console.log("ETH supplied to the Compound Protocol:", balanceOfUnderlying);
-  return compoundCEthContract.methods.balanceOf(myContractAddress).call();
-}).then((cTokenBalance) => {
+  // Uncomment this to see the solidity logs
+  // console.log(supplyResult.events.MyLog);
+
+  let balanceOfUnderlying = await compoundCEthContract.methods.
+    balanceOfUnderlying(myContractAddress).call();
+
+  balanceOfUnderlyingEth = web3.utils.fromWei(balanceOfUnderlying).toString();
+  console.log("ETH supplied to the Compound Protocol:", balanceOfUnderlyingEth);
+
+  let cTokenBalance = await compoundCEthContract.methods.
+    balanceOf(myContractAddress).call();
   cTokenBalance = (cTokenBalance / 1e8).toString();
   console.log("MyContract's cETH Token Balance:", cTokenBalance);
-}).catch((error) => {
-  console.error(error);
+
+  // Call redeem based on a cToken amount
+  const amount = web3.utils.toHex(cTokenBalance * 1e8);
+  const redeemType = true; // true for `redeem`
+
+  // Call redeemUnderlying based on an underlying amount
+  // const amount = web3.utils.toHex(balanceOfUnderlying);
+  // const redeemType = false; //false for `redeemUnderlying`
+
+  // Retrieve your asset by exchanging cTokens
+  console.log('Redeeming the cETH for ETH...');
+  let redeemResult = await myContract.methods.redeemCEth(
+    amount,
+    redeemType,
+    compoundCEthContractAddress
+  ).send({
+    from: myWalletAddress,
+    gasLimit: web3.utils.toHex(750000),      // posted at compound.finance/developers#gas-costs
+    gasPrice: web3.utils.toHex(20000000000), // use ethgasstation.info (mainnet only)
+  });
+
+  if (redeemResult.events.MyLog.returnValues[1] != 0) {
+    throw Error('Redeem Error Code: '+redeemResult.events.MyLog.returnValues[1]);
+  }
+
+  cTokenBalance = await compoundCEthContract.methods.balanceOf(myContractAddress).call();
+  cTokenBalance = cTokenBalance / 1e8;
+  console.log("MyContract's cETH Token Balance:", cTokenBalance);
+
+  ethBalance = await web3.eth.getBalance(myContractAddress);
+  ethBalance = ethBalance / 1e18;
+  console.log("MyContract's ETH Balance:", ethBalance);
+}
+
+main().catch((err) => {
+  console.error(err);
 });
