@@ -15,7 +15,7 @@ const compoundCEthContract = new web3.eth.Contract(abiJson, contractAddress);
 
 const main = async function() {
   const supplyRatePerBlockMantissa = await compoundCEthContract.methods.
-  supplyRatePerBlock().call()
+    supplyRatePerBlock().call()
   const interestPerEthThisBlock = supplyRatePerBlockMantissa / 1e18
   console.log(`Each supplied ETH will increase by ${interestPerEthThisBlock}` +
     ` this block, based on the current interest rate.`)
@@ -30,6 +30,7 @@ const main = async function() {
   });
 
   console.log('cETH "Mint" operation successful.');
+
   const _balanceOfUnderlying = await compoundCEthContract.methods
     .balanceOfUnderlying(myWalletAddress).call();
   let balanceOfUnderlying = web3.utils.fromWei(_balanceOfUnderlying).toString();
@@ -70,4 +71,3 @@ const main = async function() {
 main().catch((err) => {
   console.error(err);
 });
-

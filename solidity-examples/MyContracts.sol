@@ -107,7 +107,6 @@ contract MyContract {
         // Error codes are listed here:
         // https://compound.finance/developers/ctokens#ctoken-error-codes
         emit MyLog("If this is not 0, there was an error", redeemResult);
-        require(redeemResult == 0, "redeemResult error");
 
         return true;
     }
@@ -135,11 +134,10 @@ contract MyContract {
         // Error codes are listed here:
         // https://compound.finance/developers/ctokens#ctoken-error-codes
         emit MyLog("If this is not 0, there was an error", redeemResult);
-        require(redeemResult == 0, "redeemResult error");
 
         return true;
     }
 
-    // Need this to receive ETH when calling `redeemCEth`
+    // This is needed to receive ETH when calling `redeemCEth`
     function() external payable {}
 }

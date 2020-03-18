@@ -54,9 +54,9 @@ Running these scripts will give your wallet **cETH** and **cDAI**. These are ERC
 ### Localhost Test Net
 - Run your local test net in a second command line window **using the command above**.
 - If using DAI (an ERC20 token example), you need to **first** mint some for your wallet using `node mint-testnet-dai.js`. You may need to update the DAI main net contract address and the `MCD_JOIN_DAI` address in the script. This changes periodically as DAI is improved (see **Minting Test DAI** section below for updating).
-- `cd json-rpc-examples/`
-- `node supply-eth-via-json-rpc.js` To supply ETH.
-- `node supply-erc20-via-json-rpc.js` To supply some DAI. The same code can be used for any other [ERC20 token that Compound supports](https://compound.finance/markets?ref=github&user=ajb413&repo=compound-supply-examples).
+- `cd web3-js-examples/`
+- `node supply-eth-via-web3.js` To supply ETH.
+- `node supply-erc20-via-web3.js.js` To supply some DAI. The same code can be used for any other [ERC20 token that Compound supports](https://compound.finance/markets?ref=github&user=ajb413&repo=compound-supply-examples).
 
 ### Public Test Net or Main Net
 - Make sure you have a wallet with ETH for the Ethereum network you plan to interface with (Main, Ropsten, Kovan, etc.).
@@ -85,42 +85,73 @@ Running these scripts will give your contract address **cETH** and **cDAI**. The
 ## Output Examples
 
 **Supply ETH via JSON RPC**
-```
-node supply-eth-via-json-rpc.js
-Sending ETH to the Compound Protocol...
-cETH "Mint" operation successful.
-ETH supplied to the Compound Protocol: 0.999999999884479961
-My wallet's cETH Token Balance: 49.97183529
-```
+<details><summary>Output Example</summary>
+<p>
 
-**Supply ERC20 via JSON RPC**
 ```
-node supply-erc20-via-json-rpc.js
+Each supplied ETH will increase by 8.2293391e-11 this block, based on the current interest rate.
+Supplying ETH to the Compound Protocol...
+cETH "Mint" operation successful.
+ETH supplied to the Compound Protocol: 0.999999999993817917
+My wallet's cETH Token Balance: 49.97113281
+Current exchange rate from cETH to ETH: 0.02001155354624465
+Redeeming the cETH for ETH...
+Exchanging all cETH based on cToken amount...
+My wallet's cETH Token Balance: 0
+```
+</p>
+</details>
+
+**Supply ERC20 via Web3.js JSON RPC**
+<details><summary>Output Example</summary>
+<p>
+
+```
+Each supplied DAI will increase by 3.4419414735e-8 this block, based on the current interest rate.
 DAI contract "Approve" operation successful.
 Sending DAI to the Compound Protocol...
 cDAI "Mint" operation successful.
-DAI supplied to the Compound Protocol: 9.999999999992957452
-My wallet's cDAI Token Balance: 495.96058738
+DAI supplied to the Compound Protocol: 9.999999999946682815
+My wallet's cDAI Token Balance: 490.54269554
+Current exchange rate from cDAI to DAI: 0.020385585374864196
+Redeeming the cDAI for DAI...
+Exchanging all cDAI based on cToken amount...
+My wallet's cDAI Token Balance: 0
 ```
+</p>
+</details>
 
 **Supply ETH via Solidity**
+<details><summary>Output Example</summary>
+<p>
+
 ```
-node supply-eth-via-solidity.js
 Supplied ETH to Compound via MyContract
-ETH supplied to the Compound Protocol: 0.999999999998500226
-MyContract's cETH Token Balance: 49.97183528
+ETH supplied to the Compound Protocol: 0.999999999943411552
+MyContract's cETH Token Balance: 49.97113268
+Redeeming the cETH for ETH...
+MyContract's cETH Token Balance: 0
+MyContract's ETH Balance: 1.0000000000257048
 ```
+</p>
+</details>
 
 **Supply ERC20 Token via Solidity**
+<details><summary>Output Example</summary>
+<p>
+
 ```
-node supply-erc20-via-solidity.js
 Now transferring DAI from my wallet to MyContract...
 MyContract now has DAI to supply to the Compound Protocol.
 MyContract is now minting cDAI...
 Supplied DAI to Compound via MyContract
-DAI supplied to the Compound Protocol: 9.999999999805051616
-MyContract's cDAI Token Balance: 495.86440618
+DAI supplied to the Compound Protocol: 9.999999999856476884
+MyContract's cDAI Token Balance: 490.5421692
+Redeeming the cDAI for DAI...
+MyContract's cDAI Token Balance: 0
 ```
+</p>
+</details>
 
 ## Minting Test DAI
 To mint some DAI for your test network, you must use the **Join DAI** address. This can be unlocked when running Ganache CLI. You'll need to update the Join DAI address and the contract address each time the DAI contracts are updated. 
