@@ -29,7 +29,7 @@ If you want to use the script examples in the **web browser**, you'll need to fi
 ```
 
 ### Running a Local Ethereum Test Net with Ganache CLI
-To get the localhost test net running, use the following commands in a second command line window. The command runs Ganache CLI and forks the Main Ethereum network to your machine via Cloudflare. If you want to access a test network like Ropsten, you can replace the `-f` value with your [Infura](https://infura.io/) endpoint with your API key (something like `https://kovan.infura.io/v3/<YOUR INFURA API KEY HERE>`). **Sometimes Cloudflare errors** like `missing trie node`. If this happens, use a different provider, like Infura.
+To get the localhost test net running, use the following commands in a second command line window. The command runs Ganache CLI and forks the Main Ethereum network to your machine via Cloudflare. If you want to access a test network like Ropsten, you can replace the `-f` value with your [Infura](https://infura.io/) endpoint with your API key (something like `https://mainnet.infura.io/v3/<YOUR INFURA API KEY HERE>`). **Sometimes Cloudflare errors** like `missing trie node`. If this happens, use a different provider, like Infura.
 ```bash
 cd compound-supply-examples/
 
