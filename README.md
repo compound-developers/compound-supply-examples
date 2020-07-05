@@ -71,7 +71,7 @@ Running these scripts will give your contract address **cETH** and **cDAI**. The
 - Run your local test net in a second command line window **using the command above**.
 - If using DAI (an ERC20 token example), you need to **first** mint some for your wallet using `node mint-testnet-dai.js`. You may need to update the DAI main net contract address and the `MCD_JOIN_DAI` address in the script. This changes periodically as DAI is improved (see **Minting Test DAI** section below for updating).
 - `node compile-smart-contracts.js` This will compile the Solidity code in `solidity-examples/`. The build output is written to `.build/`.
-- `node deploy-smart-contracts.js`.
+- `node deploy-smart-contracts.js`
 - `cd solidity-examples/`
 - `node supply-eth-via-solidity.js` To supply ETH.
 - `node supply-erc20-via-solidity.js` To supply some DAI. The same code can be used for any other [ERC20 token that Compound supports](https://compound.finance/markets?ref=github&user=ajb413&repo=compound-supply-examples).
@@ -167,4 +167,4 @@ Once you're certain you have the latest DAI and Join DAI address:
 
 - Run Ganache CLI using the command above with `-u` and the Join DAI address.
 - Paste the new addresses in `mint-testnet-dai.js` and save.
-- Run `node mint-testnet-dai.js`.
+- Run `node mint-testnet-dai.js`
