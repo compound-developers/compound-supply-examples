@@ -132,7 +132,7 @@ contract MyContract {
         }
 
         // Error codes are listed here:
-        // https://compound.finance/developers/ctokens#ctoken-error-codes
+        // https://compound.finance/docs/ctokens#ctoken-error-codes
         emit MyLog("If this is not 0, there was an error", redeemResult);
 
         return true;

@@ -29,7 +29,7 @@ If you want to use the script examples in the **web browser**, you'll need to fi
 ```
 
 ### Running a Local Ethereum Test Net with Ganache CLI
-To get the localhost test net running, use the following commands in a second command line window. The command runs Ganache CLI and forks the Main Ethereum network to your machine via Cloudflare. If you want to access a test network like Ropsten, you can replace the `-f` value with your [Infura](https://infura.io/) endpoint with your API key (something like `https://kovan.infura.io/v3/<YOUR INFURA API KEY HERE>`).
+To get the localhost test net running, use the following commands in a second command line window. The command runs Ganache CLI and forks the Main Ethereum network to your machine via Cloudflare. If you want to access a test network like Ropsten, you can replace the `-f` value with your [Infura](https://infura.io/) endpoint with your API key (something like `https://mainnet.infura.io/v3/<YOUR INFURA API KEY HERE>`). **Sometimes Cloudflare errors** like `missing trie node`. If this happens, use a different provider, like Infura.
 ```bash
 cd compound-supply-examples/
 
@@ -62,7 +62,7 @@ Running these scripts will give your wallet **cETH** and **cDAI**. These are ERC
 - Make sure you have a wallet with ETH for the Ethereum network you plan to interface with (Main, Ropsten, Kovan, etc.).
 - Insert the private key of your wallet in the scripts where noted. It's a best practice to insert the private key using an environment variable instead of revealing it in the code with a string literal.
 - Replace the HTTP provider in the `web3` constructors in the scripts in `json-rpc-examples/`. Replace it using the string provided by the "Endpoint" selector in your Infura project dashboard. The local test net provider is `http://127.0.0.1:8545`.
-- Next, replace the contract addresses in the scripts with the most recent ones. You can find Compound's cToken contract addresses for each network on this page: [https://compound.finance/developers#networks](https://compound.finance/developers#networks). The DAI contract address can be found in the Maker DAO website change logs [https://changelog.makerdao.com/](https://changelog.makerdao.com/).
+- Next, replace the contract addresses in the scripts with the most recent ones. You can find Compound's cToken contract addresses for each network on this page: [https://compound.finance/docs#networks](https://compound.finance/docs#networks). The DAI contract address can be found in the Maker DAO website change logs [https://changelog.makerdao.com/](https://changelog.makerdao.com/).
 
 ## Supplying Assets via Solidity Smart Contracts
 Running these scripts will give your contract address **cETH** and **cDAI**. These are ERC20 Tokens that can be **used to redeem an ever-increasing amount of the underlying asset**. The cToken exchange rate **increases every Ethereum block**, they can be transferred, and can be used to redeem at any time.
@@ -80,7 +80,7 @@ Running these scripts will give your contract address **cETH** and **cDAI**. The
 - Make sure you have a wallet with ETH for the Ethereum network you plan to interface with (Main, Ropsten, Kovan, etc.).
 - Insert the private key of your wallet in the scripts where noted. It's a best practice to insert the private key using an environment variable instead of revealing it in the code with a string literal.
 - Replace the HTTP provider in the `web3` constructors in the JS scripts in `solidity-examples/`. Replace it using the string provided by the "Endpoint" selector in your Infura project dashboard. The local test net provider is `http://127.0.0.1:8545`.
-- Next, replace the contract addresses in the JS scripts with the most recent ones. You can find Compound's cToken contract addresses for each network on this page: [https://compound.finance/developers#networks](https://compound.finance/developers#networks). The DAI contract address can be found in the Maker DAO website change logs [https://changelog.makerdao.com/](https://changelog.makerdao.com/).
+- Next, replace the contract addresses in the JS scripts with the most recent ones. You can find Compound's cToken contract addresses for each network on this page: [https://compound.finance/docs#networks](https://compound.finance/docs#networks). The DAI contract address can be found in the Maker DAO website change logs [https://changelog.makerdao.com/](https://changelog.makerdao.com/).
 
 ## Output Examples
 
