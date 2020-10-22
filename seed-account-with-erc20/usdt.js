@@ -1,11 +1,11 @@
-// First run Ganache locally with `cUSDC` address unlocked
+// First run Ganache locally with `cUSDT` address unlocked
 /*
 
 ganache-cli \
   -f https://mainnet.infura.io/v3/$infuraApiKey \
   -m "clutch captain shoe salt awake harvest setup primary inmate ugly among become" \
   -i 1 \
-  -u 0x39AA39c021dfbaE8faC545936693aC917d5E7563
+  -u 0xf650c3d88d12db855b8bf7d11be6c55a4e07dcc9
 
 */
 
@@ -14,12 +14,12 @@ const web3 = new Web3('http://127.0.0.1:8545');
 
 const erc20 = require('./abis/erc20-abi.json');
 
-const name = 'USDC';
-const ud = 6; // Underlying decimals of USDC
+const name = 'USDT';
+const ud = 6; // Underlying decimals of USDT
 
 // addresses can be found here https://github.com/compound-finance/compound-config/blob/master/networks/mainnet.json
-const underlyingMainnetAddress = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48';
-const cTokenMainnetAddress = '0x39AA39c021dfbaE8faC545936693aC917d5E7563';
+const underlyingMainnetAddress = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
+const cTokenMainnetAddress = '0xf650c3d88d12db855b8bf7d11be6c55a4e07dcc9';
 
 const underlyingContract = new web3.eth.Contract(erc20, underlyingMainnetAddress);
 const cTokenContract = new web3.eth.Contract(erc20, cTokenMainnetAddress);

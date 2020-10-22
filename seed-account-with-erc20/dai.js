@@ -27,8 +27,8 @@ web3.eth.getAccounts().then((ganacheAccounts) => {
   accounts = ganacheAccounts;
   daiContract = new web3.eth.Contract(daiAbi, daiMainNetAddress);
 
-  // 500 DAI
-  const numbDaiToMint = web3.utils.toWei('500', 'ether');
+  // 50 DAI
+  const numbDaiToMint = web3.utils.toWei('50', 'ether');
 
   return daiContract.methods.mint(accounts[0], numbDaiToMint)
     .send({ 
@@ -39,7 +39,7 @@ web3.eth.getAccounts().then((ganacheAccounts) => {
   console.log('DAI mint success');
   return daiContract.methods.balanceOf(accounts[0]).call();
 }).then((balanceOf) => {
-  const dai = web3.utils.fromWei(balanceOf, 'ether');
+  const dai = balanceOf / 1e18;
   console.log('DAI amount in first Ganache account wallet:', dai);
 }).catch((err) => {
   console.error(err);
