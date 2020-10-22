@@ -70,11 +70,11 @@ contract MyContract {
 
         // Amount of current exchange rate from cToken to underlying
         uint256 exchangeRateMantissa = cToken.exchangeRateCurrent();
-        emit MyLog("Exchange Rate (scaled up by 1e18): ", exchangeRateMantissa);
+        emit MyLog("Exchange Rate (scaled up): ", exchangeRateMantissa);
 
         // Amount added to you supply balance this block
         uint256 supplyRateMantissa = cToken.supplyRatePerBlock();
-        emit MyLog("Supply Rate: (scaled up by 1e18)", supplyRateMantissa);
+        emit MyLog("Supply Rate: (scaled up)", supplyRateMantissa);
 
         // Approve transfer on the ERC20 contract
         underlying.approve(_cErc20Contract, _numTokensToSupply);
@@ -92,7 +92,8 @@ contract MyContract {
         // Create a reference to the corresponding cToken contract, like cDAI
         CErc20 cToken = CErc20(_cErc20Contract);
 
-        // `amount` is scaled up by 1e18 to avoid decimals
+        // `amount` is scaled up, see decimal table here:
+        // https://compound.finance/docs#protocol-math
 
         uint256 redeemResult;
 
