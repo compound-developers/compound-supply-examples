@@ -8,7 +8,7 @@
  * ./node_modules/.bin/ganache-cli \
  *     -f https://mainnet.infura.io/v3/<YOUR INFURA API KEY HERE> \
  *     -m "clutch captain shoe salt awake harvest setup primary inmate ugly among become"
- *     -i 999 \
+ *     -i 1 \
  *     -u 0x9759A6Ac90977b93B58547b4A71c78317f391A28
  */
 const Web3 = require('web3');
@@ -16,7 +16,7 @@ const web3 = new Web3('http://127.0.0.1:8545');
 
 // `myContractAddress` is logged when running the deploy script in the root
 // directory of the project. Run the deploy script prior to running this one.
-const myContractAddress = '0x9C5Dd70D98e9B321217e8232235e25E64E78C595';
+const myContractAddress = '0x4a81cff73f1b8c6d94f50EDC08A4DEe7fbC109C6';
 const myAbi = require('../.build/abi.json');
 const myContract = new web3.eth.Contract(myAbi, myContractAddress);
 
@@ -40,7 +40,7 @@ const main = async function() {
     compoundCEthContractAddress
   ).send({
     from: myWalletAddress, // Some Ganache wallet address
-    gasLimit: web3.utils.toHex(500000),        // posted at compound.finance/developers#gas-costs
+    gasLimit: web3.utils.toHex(750000),        // posted at compound.finance/developers#gas-costs
     gasPrice: web3.utils.toHex(20000000000),   // use ethgasstation.info (mainnet only)
     value: web3.utils.toHex(web3.utils.toWei('1', 'ether'))
   });
