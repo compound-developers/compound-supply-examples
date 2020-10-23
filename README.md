@@ -92,7 +92,7 @@ Running these scripts will give your contract address **cETH** and **cDAI**. The
 
 ## Output Examples
 
-**Supply ETH via JSON RPC**
+**Supply ETH via Web3.js JSON RPC**
 <details><summary>Output Example</summary>
 <p>
 
