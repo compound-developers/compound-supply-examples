@@ -52,7 +52,7 @@ ganache-cli \
 - `-f` Forks the Main Ethereum network to your local machine for development and testing.
 - `-m` Runs Ganache with an Ethereum key set based on the mnemonic passed. The first 10 addresses have 100 test ETH in their balance on the local test net every time you boot Ganache. **Do not use this mnemonic anywhere other than your localhost test net.**
 - `-i` Sets an explicit network ID to avoid confusion and errors.
-- `-u` Unlocks an address so you can write to your localhost test blockchain without knowing that address's private key. We are unlocking the above address so we can mint our own test DAI on our localhost test net. The address for minting DAI changes occasionally (see **Minting Test DAI** section below for updating).
+- `-u` Unlocks an address so you can write to your localhost test blockchain without knowing that address's private key. We are unlocking the above address so we can mint our own test DAI on our localhost test net. The address for minting DAI changes occasionally (see **Minting Localhost Test DAI** section below for updating).
 
 ## Supplying Assets Directly via JSON RPC
 These code examples can be run by a web browser or with Node.js. If you want to use a web browser, you'll need to import the web3.js script in your HTML or JS file (see import above).
@@ -61,7 +61,7 @@ Running these scripts will give your wallet **cETH** and **cDAI**. These are ERC
 
 ### Localhost Test Net
 - Run your local test net in a second command line window **using the command above**.
-- If using DAI (an ERC20 token example), you need to **first** mint some for your wallet using `node seed-account-with-erc20/dai.js`. You may need to update the DAI Mainnet contract address and the `MCD_JOIN_DAI` address in the script. This changes periodically as DAI is improved (see **Minting Test DAI** section below for updating).
+- If using DAI (an ERC20 token example), you need to **first** mint some for your wallet using `node seed-account-with-erc20/dai.js`. You may need to update the DAI Mainnet contract address and the `MCD_JOIN_DAI` address in the script. This changes periodically as DAI is improved (see **Minting Localhost Test DAI** section below for updating).
 - `cd web3-js-examples/`
 - `node supply-eth-via-web3.js` To supply ETH.
 - `node supply-erc20-via-web3.js.js` To supply some DAI. The same code can be used for any other [ERC20 token that Compound supports](https://compound.finance/markets?ref=github&user=ajb413&repo=compound-supply-examples).
@@ -77,7 +77,7 @@ Running these scripts will give your contract address **cETH** and **cDAI**. The
 
 ### Localhost Test Net
 - Run your local test net in a second command line window **using the command above**.
-- If using DAI (an ERC20 token example), you need to **first** mint some for your wallet using `node seed-account-with-erc20/dai.js`. You may need to update the DAI Mainnet contract address and the `MCD_JOIN_DAI` address in the script. This changes periodically as DAI is improved (see **Minting Test DAI** section below for updating).
+- If using DAI (an ERC20 token example), you need to **first** mint some for your wallet using `node seed-account-with-erc20/dai.js`. You may need to update the DAI Mainnet contract address and the `MCD_JOIN_DAI` address in the script. This changes periodically as DAI is improved (see **Minting Localhost Test DAI** section below for updating).
 - `node compile-smart-contracts.js` This will compile the Solidity code in `solidity-examples/`. The build output is written to `.build/`
 - `node deploy-smart-contracts.js`
 - `cd solidity-examples/`
