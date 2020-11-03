@@ -4,7 +4,7 @@ Examples for supplying Ethereum assets to the [Compound Protocol](https://compou
 
 **[Full Quick Start Tutorial on the Compound Medium Blog](https://medium.com/compound-finance/supplying-assets-to-the-compound-protocol-ec2cf5df5aa)** 
 
-If you want to supply assets directly to the protocol from your Ethereum wallet using JSON RPC and Web3.js, see the `json-rpc-examples` folder. JSON RPC can be utilized in the **web browser or with Node.js**.
+If you want to supply assets directly to the protocol from your Ethereum wallet using JSON RPC and Web3.js, see the `web3-js-examples` folder. JSON RPC can be utilized in the **web browser or with Node.js**.
 
 If you want to supply assets to the protocol from your Ethereum smart contract, see the `solidity-examples` folder.
 
@@ -42,7 +42,7 @@ To get the localhost test net running, use the following commands in a second co
 cd compound-supply-examples/
 
 ## Run a fork of Mainnet locally using Ganache CLI
-ganache-cli \
+npx ganache-cli \
   -f https://mainnet.infura.io/v3/<YOUR INFURA API KEY HERE> \
   -m "clutch captain shoe salt awake harvest setup primary inmate ugly among become" \
   -i 1 \
@@ -69,7 +69,7 @@ Running these scripts will give your wallet **cETH** and **cDAI**. These are ERC
 ### Public Test Net or Mainnet
 - Make sure you have a wallet with ETH for the Ethereum network you plan to interface with (Main, Ropsten, Kovan, etc.).
 - Insert the private key of your wallet in the scripts where noted. It's a best practice to insert the private key using an environment variable instead of revealing it in the code with a string literal.
-- Replace the HTTP provider in the `web3` constructors in the scripts in `json-rpc-examples/`. Replace it using the string provided by the "Endpoint" selector in your Infura project dashboard. The local test net provider is `http://127.0.0.1:8545`.
+- Replace the HTTP provider in the `web3` constructors in the scripts in `web3-js-examples/`. Replace it using the string provided by the "Endpoint" selector in your Infura project dashboard. The local test net provider is `http://127.0.0.1:8545`.
 - Next, replace the contract addresses in the scripts with the most recent ones. You can find Compound's cToken contract addresses for each network on this page: [https://compound.finance/docs#networks](https://compound.finance/docs#networks). The DAI contract address can be found in the Maker DAO website change logs [https://changelog.makerdao.com/](https://changelog.makerdao.com/).
 
 ## Output Examples
