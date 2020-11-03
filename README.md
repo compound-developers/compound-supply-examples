@@ -64,7 +64,7 @@ Running these scripts will give your wallet **cETH** and **cDAI**. These are ERC
 - If using DAI (an ERC20 token example), you need to **first** mint some for your wallet using `node seed-account-with-erc20/dai.js`. You may need to update the DAI Mainnet contract address and the `MCD_JOIN_DAI` address in the script. This changes periodically as DAI is improved (see **Minting Localhost Test DAI** section below for updating).
 - `cd web3-js-examples/`
 - `node supply-eth-via-web3.js` To supply ETH.
-- `node supply-erc20-via-web3.js.js` To supply some DAI. The same code can be used for any other [ERC20 token that Compound supports](https://compound.finance/markets?ref=github&user=ajb413&repo=compound-supply-examples).
+- `node supply-erc20-via-web3.js` To supply some DAI. The same code can be used for any other [ERC20 token that Compound supports](https://compound.finance/markets?ref=github&user=ajb413&repo=compound-supply-examples).
 
 ### Public Test Net or Mainnet
 - Make sure you have a wallet with ETH for the Ethereum network you plan to interface with (Main, Ropsten, Kovan, etc.).
