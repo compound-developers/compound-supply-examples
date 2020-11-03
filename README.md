@@ -72,24 +72,6 @@ Running these scripts will give your wallet **cETH** and **cDAI**. These are ERC
 - Replace the HTTP provider in the `web3` constructors in the scripts in `json-rpc-examples/`. Replace it using the string provided by the "Endpoint" selector in your Infura project dashboard. The local test net provider is `http://127.0.0.1:8545`.
 - Next, replace the contract addresses in the scripts with the most recent ones. You can find Compound's cToken contract addresses for each network on this page: [https://compound.finance/docs#networks](https://compound.finance/docs#networks). The DAI contract address can be found in the Maker DAO website change logs [https://changelog.makerdao.com/](https://changelog.makerdao.com/).
 
-## Supplying Assets via Solidity Smart Contracts
-Running these scripts will give your contract address **cETH** and **cDAI**. These are ERC20 Tokens that can be **used to redeem an ever-increasing amount of the underlying asset**. The cToken exchange rate **increases every Ethereum block**, they can be transferred, and can be used to redeem.
-
-### Localhost Test Net
-- Run your local test net in a second command line window **using the command above**.
-- If using DAI (an ERC20 token example), you need to **first** mint some for your wallet using `node seed-account-with-erc20/dai.js`. You may need to update the DAI Mainnet contract address and the `MCD_JOIN_DAI` address in the script. This changes periodically as DAI is improved (see **Minting Localhost Test DAI** section below for updating).
-- `node compile-smart-contracts.js` This will compile the Solidity code in `solidity-examples/`. The build output is written to `.build/`
-- `node deploy-smart-contracts.js`
-- `cd solidity-examples/`
-- `node supply-eth-via-solidity.js` To supply ETH.
-- `node supply-erc20-via-solidity.js` To supply some DAI. The same code can be used for any other [ERC20 token that Compound supports](https://compound.finance/markets?ref=github&user=ajb413&repo=compound-supply-examples).
-
-### Public Test Net or Mainnet
-- Make sure you have a wallet with ETH for the Ethereum network you plan to interface with (Main, Ropsten, Kovan, etc.).
-- Insert the private key of your wallet in the scripts where noted. It's a best practice to insert the private key using an environment variable instead of revealing it in the code with a string literal.
-- Replace the HTTP provider in the `web3` constructors in the JS scripts in `solidity-examples/`. Replace it using the string provided by the "Endpoint" selector in your Infura project dashboard. The local test net provider is `http://127.0.0.1:8545`.
-- Next, replace the contract addresses in the JS scripts with the most recent ones. You can find Compound's cToken contract addresses for each network on this page: [https://compound.finance/docs#networks](https://compound.finance/docs#networks). The DAI contract address can be found in the Maker DAO website change logs [https://changelog.makerdao.com/](https://changelog.makerdao.com/).
-
 ## Output Examples
 
 **Supply ETH via Web3.js JSON RPC**
