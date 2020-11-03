@@ -20,6 +20,8 @@ The code in this repository can be used to supply assets to Compound on the Main
 
 If you haven't already, install [Node.js](https://nodejs.org/) LTS. Clone this repository, `cd` to the root directory of the project, and run:
 ```bash
+git clone git@github.com:compound-developers/compound-supply-examples.git
+cd compound-supply-examples/
 npm install
 ```
 
