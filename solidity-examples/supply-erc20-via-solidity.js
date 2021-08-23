@@ -24,7 +24,7 @@ const myWalletAddress = web3.eth.accounts.wallet[0].address;
 
 // `myContractAddress` is logged when running the deploy script in the root
 // directory of the project. Run the deploy script prior to running this one.
-const myContractAddress = '0x4a81cff73f1b8c6d94f50EDC08A4DEe7fbC109C6';
+const myContractAddress = '0x958Eb4058a813daC20d875d3990cbb044B826ED8';
 const myAbi = require('../.build/abi.json');
 const myContract = new web3.eth.Contract(myAbi, myContractAddress);
 
