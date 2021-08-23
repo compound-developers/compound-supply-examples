@@ -12,7 +12,7 @@
  *     -u 0x9759A6Ac90977b93B58547b4A71c78317f391A28
  */
 const Web3 = require('web3');
-const web3 = new Web3('http://127.0.0.1:8545');
+const web3 = new Web3('http://localhost:8545');
 
 // `myContractAddress` is logged when running the deploy script in the root
 // directory of the project. Run the deploy script prior to running this one.

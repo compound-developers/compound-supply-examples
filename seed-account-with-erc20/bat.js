@@ -10,7 +10,7 @@ ganache-cli \
 */
 
 const Web3 = require('web3');
-const web3 = new Web3('http://127.0.0.1:8545');
+const web3 = new Web3('http://localhost:8545');
 
 const erc20 = require('./abis/erc20-abi.json');
 

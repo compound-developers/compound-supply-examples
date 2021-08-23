@@ -1,5 +1,5 @@
 const Web3 = require('web3');
-const web3 = new Web3('http://127.0.0.1:8545');
+const web3 = new Web3('http://localhost:8545');
 
 // Your Ethereum wallet private key
 const privateKey = 'b8c1b5c1d81f9475fdf2e334517d29f733bdfa40682207571b12fc1142cbf329';
