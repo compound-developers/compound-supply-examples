@@ -30,6 +30,11 @@ const assetName = 'DAI'; // for the log output lines
 const underlyingDecimals = 18; // Number of decimals defined in this ERC20 token's contract
 
 const main = async function() {
+  // See how many underlying ERC-20 tokens are in my wallet before we supply
+  let tokenBalance = await underlyingContract.methods.
+    balanceOf(myWalletAddress).call() / 1e18;
+  console.log(`My wallet's ${assetName} Token Balance:`, tokenBalance);
+
   // 10 tokens
   const underlyingTokensToSupply = 10 * Math.pow(10, underlyingDecimals);
 
