@@ -4,8 +4,8 @@
   "description": "Code examples for supplying Ethereum assets to the Compound Protocol. https://compound.finance/",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "console": "npx -n --experimental-repl-await saddle console"
+    "start": "node ./scripts/run-localhost-fork.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "compound finance",
@@ -15,8 +15,12 @@
   "author": "Compound Labs, Inc.",
   "license": "MIT",
   "dependencies": {
-    "ganache-cli": "^6.8.2",
-    "solc": "0.5.12",
-    "web3": "^1.2.5"
+    "@compound-finance/compound-js": "^0.3.1",
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "ethers": "^5.4.6",
+    "hardhat": "^2.6.4",
+    "web3": "^1.5.2"
   }
 }
