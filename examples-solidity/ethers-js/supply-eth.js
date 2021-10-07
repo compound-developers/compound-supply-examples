@@ -1,5 +1,9 @@
 /**
  * Executes our contract's `supplyEthToCompound` function
+ * 
+ * ## run the localhost fork and deploy script prior to this one
+ * npx hardhat run scripts/deploy.js --network localhost
+ * 
  */
 const ethers = require('ethers');
 const provider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
@@ -13,7 +17,7 @@ const myWalletAddress = wallet.address;
 
 // `myContractAddress` is logged when running the deploy script.
 // Run the deploy script prior to running this one.
-const myContractAddress = '0x5A03af5e408093aDB2a5488c6c353dEac0E22814';
+const myContractAddress = '0x0Bb909b7c3817F8fB7188e8fbaA2763028956E30';
 const myAbi = require('../../artifacts/contracts/MyContracts.sol/MyContract.json').abi;
 const myContract = new ethers.Contract(myContractAddress, myAbi, wallet);
 
