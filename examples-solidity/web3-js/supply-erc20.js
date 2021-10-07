@@ -1,15 +1,5 @@
 /**
  * Executes our contract's `supplyErc20ToCompound` function
- * 
- * Remember to run your local ganache-cli with the mnemonic so you have accounts
- * with ETH in your local Ethereum environment. Don't use the keys outside of 
- * your local test environment.
- * 
- * ./node_modules/.bin/ganache-cli \
- *     -f https://mainnet.infura.io/v3/<YOUR INFURA API KEY HERE> \
- *     -m "clutch captain shoe salt awake harvest setup primary inmate ugly among become"
- *     -i 1 \
- *     -u 0x9759A6Ac90977b93B58547b4A71c78317f391A28
  */
 const Web3 = require('web3');
 const web3 = new Web3('http://localhost:8545');
@@ -24,7 +14,7 @@ const myWalletAddress = web3.eth.accounts.wallet[0].address;
 
 // `myContractAddress` is logged when running the deploy script in the root
 // directory of the project. Run the deploy script prior to running this one.
-const myContractAddress = '0x958Eb4058a813daC20d875d3990cbb044B826ED8';
+const myContractAddress = '0x5A03af5e408093aDB2a5488c6c353dEac0E22814';
 const myAbi = require('../../artifacts/contracts/MyContracts.sol/MyContract.json').abi;
 const myContract = new web3.eth.Contract(myAbi, myContractAddress);
 
