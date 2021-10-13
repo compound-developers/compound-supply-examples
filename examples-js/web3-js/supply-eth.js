@@ -23,7 +23,7 @@ const main = async function() {
   // Mint some cETH by supplying ETH to the Compound Protocol
   await cEthContract.methods.mint().send({
     from: myWalletAddress,
-    gasLimit: web3.utils.toHex(150000),
+    gasLimit: web3.utils.toHex(250000),
     gasPrice: web3.utils.toHex(20000000000), // use ethgasstation.info (mainnet only)
     value: web3.utils.toHex(web3.utils.toWei('1', 'ether'))
   });

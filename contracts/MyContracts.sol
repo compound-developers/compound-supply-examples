@@ -1,4 +1,6 @@
-pragma solidity ^0.5.12;
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.6;
 
 
 interface Erc20 {
@@ -53,7 +55,7 @@ contract MyContract {
         uint256 supplyRateMantissa = cToken.supplyRatePerBlock();
         emit MyLog("Supply Rate: (scaled up by 1e18)", supplyRateMantissa);
 
-        cToken.mint.value(msg.value).gas(250000)();
+        cToken.mint{ value: msg.value, gas: 250000 }();
         return true;
     }
 
@@ -106,7 +108,7 @@ contract MyContract {
         }
 
         // Error codes are listed here:
-        // https://compound.finance/developers/ctokens#ctoken-error-codes
+        // https://compound.finance/docs/ctokens#error-codes
         emit MyLog("If this is not 0, there was an error", redeemResult);
 
         return true;
@@ -133,12 +135,12 @@ contract MyContract {
         }
 
         // Error codes are listed here:
-        // https://compound.finance/docs/ctokens#ctoken-error-codes
+        // https://compound.finance/docs/ctokens#error-codes
         emit MyLog("If this is not 0, there was an error", redeemResult);
 
         return true;
     }
 
     // This is needed to receive ETH when calling `redeemCEth`
-    function() external payable {}
+    receive() external payable {}
 }
