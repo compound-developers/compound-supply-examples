@@ -85,6 +85,8 @@ The examples send ETH or DAI to a smart contract, which then mints cETH or cDAI.
 ### Public Testnet or Mainnet
 See the Hardhat docs for more information on deploying to public Ethereum networks. https://hardhat.org/guides/deploying.html
 
+## Script Output Examples
+
 **Supply ETH via Web3.js JSON RPC**
 <details><summary>Output Example</summary>
 <p>
