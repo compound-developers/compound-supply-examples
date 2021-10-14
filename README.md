@@ -70,8 +70,6 @@ If you want to test locally with a different supported asset (besides DAI), see 
 - Replace the HTTP provider in the constructors in the scripts in `examples-js/`. Replace it using the string provided by the "Endpoint" selector in your Infura project dashboard. The local testnet provider is `http://localhost:8545`.
 - Next, replace the contract addresses in the scripts with the most recent ones. You can find Compound's cToken contract addresses for each network on this page: [https://compound.finance/docs#networks](https://compound.finance/docs#networks).
 
-## Output Examples
-
 ## Supplying Assets With a Solidity Smart Contract
 The examples send ETH or DAI to a smart contract, which then mints cETH or cDAI. The contract can also redeem the cTokens for their corresponding underlying.
 
@@ -93,24 +91,24 @@ See the Hardhat docs for more information on deploying to public Ethereum networ
 
 ```
 $ node ./examples-js/web3-js/supply-eth.js
-My wallet's ETH balance: 99.97423756
+My wallet's ETH balance: 10000
 
 Supplying ETH to the Compound Protocol...
 
 cETH "Mint" operation successful.
 
-ETH supplied to the Compound Protocol: 0.9999999998672074
+ETH supplied to the Compound Protocol: 0.999999999922754
 
-My wallet's cETH Token Balance: 49.93244926
+My wallet's cETH Token Balance: 49.86379983
 
-Current exchange rate from cETH to ETH: 0.020027056847545625
+Current exchange rate from cETH to ETH: 0.020054628875698224
 
 Redeeming the cETH for ETH...
 
 Exchanging all cETH based on cToken amount...
 
 My wallet's cETH Token Balance: 0
-My wallet's ETH balance: 99.96892080053026
+My wallet's ETH balance: 9999.993847840284
 ```
 </p>
 </details>
@@ -177,4 +175,29 @@ MyContract's cDAI Token Balance: 0
 </details>
 
 ## Minting Localhost Test ERC20s
+
 All assets supported by the Compound protocol can be seeded into the first account when doing localhost testing. See the `amounts` object at the top of the script `./scripts/run-localhost-fork.js`. You can add assets and amounts to this object. When the localhost fork script is run, Hardhat will move tokens from a whale (cToken contract) to the first wallet of your selected mnemonic (in your environment variable). You can then use these assets freely on your localhost fork.
+
+## Ethers.js & Compound.js Examples
+
+There are several other code examples for [ethers.js](https://ethers.org/) and [Compound.js](https://github.com/compound-finance/compound-js). These SDKs can be used instead of Web3.js in each instance. Each version of the script does the same operations. To try the other code examples, run the scripts in the other folders.
+
+```bash
+## Ethers.js Examples
+node ./examples-solidity/ethers-js/supply-erc20.js
+node ./examples-solidity/ethers-js/supply-eth.js
+node ./examples-js/ethers-js/supply-erc20.js
+node ./examples-js/ethers-js/supply-eth.js
+
+## Compound.js Examples
+node ./examples-solidity/compound-js/supply-erc20.js
+node ./examples-solidity/compound-js/supply-eth.js
+node ./examples-js/compound-js/supply-erc20.js
+node ./examples-js/compound-js/supply-eth.js
+
+## Web3.js
+node ./examples-solidity/web3-js/supply-erc20.js
+node ./examples-solidity/web3-js/supply-eth.js
+node ./examples-js/web3-js/supply-erc20.js
+node ./examples-js/web3-js/supply-eth.js
+```
