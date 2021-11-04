@@ -6,7 +6,7 @@ Examples for supplying Ethereum assets to the [Compound Protocol](https://compou
 
 If you want to supply assets directly to the protocol from your Ethereum wallet using JSON RPC, see the `examples-js` folder. There are examples for popular web3 libraries like **Web3.js**, **Ethers.js**, and **Compound.js**.
 
-JSON RPC can be utilized in the **web browser, with Node.js, or any other programming language with a web3 library.**.
+JSON RPC can be utilized in the **web browser, with Node.js, or any other programming language with a web3 library**.
 
 If you want to supply assets to the protocol from your Ethereum smart contract, see the `examples-solidity` folder.
 
@@ -52,7 +52,7 @@ node ./scripts/run-localhost-fork.js
 ```
 
 ## Supplying Assets Directly via JSON RPC
-These code examples can be run by a web browser or with Node.js. If you want to use a web browser, you'll need to import a library in your HTML or JS file (see import above).
+These code examples can be run by a web browser or with Node.js. If you want to use a web browser, you'll need to import a library in your HTML or JS file.
 
 Running these scripts will give your wallet **cETH** and **cDAI**. These are ERC20 Tokens that can be **used to redeem an ever-increasing amount of the underlying asset**. The cToken exchange rate **increases every Ethereum block**, they can be transferred, and can be used to redeem.
 
