@@ -29,6 +29,13 @@ const cTokenAddress = Compound.util.getAddress(cTokenName);
 const myContractAddress = '0x0Bb909b7c3817F8fB7188e8fbaA2763028956E30';
 
 const main = async function() {
+  const ethersProvider = new Compound._ethers.providers.JsonRpcProvider(providerUrl);
+  const contractIsDeployed = (await ethersProvider.getCode(myContractAddress)) !== '0x';
+
+  if (!contractIsDeployed) {
+    throw Error('MyContract is not deployed! Deploy it by running the deploy script.');
+  }
+
   console.log(`Now transferring ${assetName} from my wallet to MyContract...`);
 
   let tx = await _erc20Transfer(

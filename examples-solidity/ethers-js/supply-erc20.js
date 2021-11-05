@@ -35,6 +35,12 @@ const assetName = 'DAI'; // for the log output lines
 const underlyingDecimals = 18; // Number of decimals defined in this ERC20 token's contract
 
 const main = async function() {
+  const contractIsDeployed = (await provider.getCode(myContractAddress)) !== '0x';
+
+  if (!contractIsDeployed) {
+    throw Error('MyContract is not deployed! Deploy it by running the deploy script.');
+  }
+
   console.log(`Now transferring ${assetName} from my wallet to MyContract...`);
 
   let tx = await underlying.transfer(

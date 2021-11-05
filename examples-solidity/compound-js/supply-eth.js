@@ -23,6 +23,13 @@ const myContractAddress = '0x0Bb909b7c3817F8fB7188e8fbaA2763028956E30';
 const compoundCEthContractAddress = '0x4ddc2d193948926d02f9b1fe9e1daa0718270ed5';
 
 const main = async function() {
+  const ethersProvider = new Compound._ethers.providers.JsonRpcProvider(providerUrl);
+  const contractIsDeployed = (await ethersProvider.getCode(myContractAddress)) !== '0x';
+
+  if (!contractIsDeployed) {
+    throw Error('MyContract is not deployed! Deploy it by running the deploy script.');
+  }
+
   // Mint some cETH by sending ETH to the Compound Protocol
   let tx = await _supplyEthToCompound(Compound._ethers.utils.parseUnits('1', 'ether'));
   let supplyResult = await tx.wait(1);

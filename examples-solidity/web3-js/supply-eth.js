@@ -29,6 +29,12 @@ web3.eth.accounts.wallet.add('0x' + privateKey);
 const myWalletAddress = web3.eth.accounts.wallet[0].address;
 
 const main = async function() {
+  const contractIsDeployed = (await web3.eth.getCode(myContractAddress)) !== '0x';
+
+  if (!contractIsDeployed) {
+    throw Error('MyContract is not deployed! Deploy it by running the deploy script.');
+  }
+
   // Mint some cETH by sending ETH to the Compound Protocol
   let supplyResult = await myContract.methods.supplyEthToCompound(
     compoundCEthContractAddress

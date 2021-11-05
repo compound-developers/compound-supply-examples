@@ -44,6 +44,12 @@ const fromMyWallet = {
 };
 
 const main = async function() {
+  const contractIsDeployed = (await web3.eth.getCode(myContractAddress)) !== '0x';
+
+  if (!contractIsDeployed) {
+    throw Error('MyContract is not deployed! Deploy it by running the deploy script.');
+  }
+
   console.log(`Now transferring ${assetName} from my wallet to MyContract...`);
 
   let transferResult = await underlying.methods.transfer(

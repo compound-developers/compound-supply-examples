@@ -28,6 +28,12 @@ const compoundCEthContractAbi = [{"constant":true,"inputs":[],"name":"name","out
 const compoundCEthContract = new ethers.Contract(compoundCEthContractAddress, compoundCEthContractAbi, wallet);
 
 const main = async function() {
+  const contractIsDeployed = (await provider.getCode(myContractAddress)) !== '0x';
+
+  if (!contractIsDeployed) {
+    throw Error('MyContract is not deployed! Deploy it by running the deploy script.');
+  }
+
   // Mint some cETH by sending ETH to the Compound Protocol
   let tx = await myContract.supplyEthToCompound(
     compoundCEthContractAddress,
